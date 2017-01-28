@@ -164,24 +164,6 @@
     }
 }
 
-#pragma mark - Intrinsic Content Size Invalidation
-
-// Use non-public API in UIView directly is dangerous, so we inject at runtime.
-/*
-+ (void)load {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        SEL selector = NSSelectorFromString(@"_intrinsicContentSizeInvalidatedForChildView:");
-        Method method = class_getInstanceMethod(self, @selector(intrinsicContentSizeInvalidatedForChildView:));
-        class_addMethod(self, selector, method_getImplementation(method), method_getTypeEncoding(method));
-    });
-}
-
-- (void)intrinsicContentSizeInvalidatedForChildView:(UIView *)childView {
-    [self.distributionArrangement intrinsicContentSizeInvalidatedForItem:childView];
-    [self.alignmentArrangement intrinsicContentSizeInvalidatedForItem:childView];
-}
-*/
 #pragma mark - Layout
 
 - (void)updateLayoutArrangements {
