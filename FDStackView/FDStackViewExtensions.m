@@ -21,7 +21,6 @@
 // SOFTWARE.
 
 #import "FDStackViewExtensions.h"
-#import <objc/runtime.h>
 
 @implementation NSMapTable (FDAllObjects)
 
@@ -32,22 +31,6 @@
 @end
 
 @implementation NSLayoutConstraint (FDStackViewExtensions)
-
-+ (void)load {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        // iOS6 patch
-        if(!class_getProperty(self, "identifier")) {
-            SEL getterSelector = sel_registerName("identifier");
-            class_addMethod(self, getterSelector, imp_implementationWithBlock(^(id self) {
-                return objc_getAssociatedObject(self, getterSelector);
-            }), "@@");
-            class_addMethod(self, sel_registerName("setIdentifier:"), imp_implementationWithBlock(^(id self, id value) {
-                objc_setAssociatedObject(self, getterSelector, value, OBJC_ASSOCIATION_COPY_NONATOMIC);
-            }), "v@:@");
-        }
-    });
-}
 
 @end
 
