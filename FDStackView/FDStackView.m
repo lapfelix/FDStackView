@@ -40,6 +40,7 @@
 - (id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     if (self) {
+        NSAssert(FALSE, @"Interface builder support is broken in this version of FDStackView");
         // Attributes of UIStackView in interface builder that archived.
         [self commonInitializationWithArrangedSubviews:[decoder decodeObjectForKey:@"UIStackViewArrangedSubviews"]];
         self.axis = [decoder decodeIntegerForKey:@"UIStackViewAxis"];
