@@ -35,7 +35,7 @@
 
 @implementation FDStackViewDistributionLayoutArrangement
 
-- (instancetype)initWithItems:(NSArray *)items onAxis:(UILayoutConstraintAxis)axis {
+- (instancetype)initWithItems:(NSArray *)items onAxis:(FDLayoutConstraintAxis)axis {
     self = [super initWithItems:items onAxis:axis];
     if (self) {
         _spacingOrCenteringGuides = [NSMapTable weakToWeakObjectsMapTable];
@@ -51,7 +51,7 @@
 }
 
 - (NSLayoutRelation)edgeToEdgeRelation {
-    return self.distribution >= UIStackViewDistributionEqualSpacing ? NSLayoutRelationGreaterThanOrEqual : NSLayoutRelationEqual;
+    return self.distribution >= FDStackViewDistributionEqualSpacing ? NSLayoutRelationGreaterThanOrEqual : NSLayoutRelationEqual;
 }
 
 - (void)resetFillEffect {
@@ -97,7 +97,7 @@
     for (UIView *view in visiableViews.cdr) {
         NSLayoutAttribute attribute = [self dimensionAttributeForCurrentAxis];
         NSLayoutRelation relation = NSLayoutRelationEqual;
-        CGFloat multiplier = self.distribution == UIStackViewDistributionFillEqually ? 1: ({
+        CGFloat multiplier = self.distribution == FDStackViewDistributionFillEqually ? 1: ({
             CGSize size1 = offset.intrinsicContentSize;
             CGSize size2 = view.intrinsicContentSize;
             CGFloat multiplier = 1;
@@ -115,7 +115,7 @@
         });
         NSLayoutConstraint *equally = [NSLayoutConstraint constraintWithItem:offset attribute:attribute relatedBy:relation toItem:view attribute:attribute multiplier:multiplier constant:0];
         equally.priority = UILayoutPriorityRequired - (++order);
-        equally.identifier = self.distribution == UIStackViewDistributionFillEqually ? @"FDSV-fill-equally" : @"FDSV-fill-proportionally";
+        equally.identifier = self.distribution == FDStackViewDistributionFillEqually ? @"FDSV-fill-equally" : @"FDSV-fill-proportionally";
         [self.canvas addConstraint:equally];
         [self.relatedDimensionConstraints setObject:equally forKey:offset];
         
@@ -149,8 +149,8 @@
         NSLayoutAttribute minGapAttribute = [self minAttributeForGapConstraint];
         NSLayoutAttribute minContentAttribute;
         NSLayoutAttribute maxContentAttribute;
-        if (self.distribution == UIStackViewDistributionEqualCentering) {
-            minContentAttribute = self.axis == UILayoutConstraintAxisHorizontal ? NSLayoutAttributeCenterX : NSLayoutAttributeCenterY;
+        if (self.distribution == FDStackViewDistributionEqualCentering) {
+            minContentAttribute = self.axis == FDLayoutConstraintAxisHorizontal ? NSLayoutAttributeCenterX : NSLayoutAttributeCenterY;
             maxContentAttribute = minContentAttribute;
         } else {
             minContentAttribute = minGapAttribute;
@@ -207,14 +207,14 @@
     [self resetFillEffect];
     
     switch (self.distribution) {
-        case UIStackViewDistributionFillEqually:
-        case UIStackViewDistributionFillProportionally:
+        case FDStackViewDistributionFillEqually:
+        case FDStackViewDistributionFillProportionally:
             // related dimension
             [self resetEquallyEffect];
             break;
             
-        case UIStackViewDistributionEqualCentering:
-        case UIStackViewDistributionEqualSpacing:
+        case FDStackViewDistributionEqualCentering:
+        case FDStackViewDistributionEqualSpacing:
             // spacing or centering
             [self resetGapEffect];
             break;
@@ -243,7 +243,7 @@
 }
 
 - (NSLayoutAttribute)minAttributeForCanvasConnections {
-    return self.axis == UILayoutConstraintAxisHorizontal ? NSLayoutAttributeLeading : NSLayoutAttributeTop;
+    return self.axis == FDLayoutConstraintAxisHorizontal ? NSLayoutAttributeLeading : NSLayoutAttributeTop;
 }
 
 - (NSLayoutAttribute)centerAttributeForCanvasConnections {
@@ -255,7 +255,7 @@
 }
 
 - (NSLayoutAttribute)minAttributeForGapConstraint {
-    return self.axis == UILayoutConstraintAxisHorizontal ? NSLayoutAttributeLeading : NSLayoutAttributeTop;
+    return self.axis == FDLayoutConstraintAxisHorizontal ? NSLayoutAttributeLeading : NSLayoutAttributeTop;
 }
 
 - (void)updateCanvasConnectionConstraintsIfNecessary {

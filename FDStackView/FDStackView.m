@@ -43,8 +43,8 @@
         // Attributes of UIStackView in interface builder that archived.
         [self commonInitializationWithArrangedSubviews:[decoder decodeObjectForKey:@"UIStackViewArrangedSubviews"]];
         self.axis = [decoder decodeIntegerForKey:@"UIStackViewAxis"];
-        self.distribution = [decoder decodeIntegerForKey:@"UIStackViewDistribution"];
-        self.alignment = [decoder decodeIntegerForKey:@"UIStackViewAlignment"];
+        self.distribution = [decoder decodeIntegerForKey:@"FDStackViewDistribution"];
+        self.alignment = [decoder decodeIntegerForKey:@"FDStackViewAlignment"];
         self.spacing = [decoder decodeDoubleForKey:@"UIStackViewSpacing"];
         self.baselineRelativeArrangement = [decoder decodeBoolForKey:@"UIStackViewBaselineRelative"];
         self.layoutMarginsRelativeArrangement = [decoder decodeBoolForKey:@"UIStackViewLayoutMarginsRelative"];
@@ -130,7 +130,7 @@
 
 #pragma mark - Public Setters
 
-- (void)setAxis:(UILayoutConstraintAxis)axis {
+- (void)setAxis:(FDLayoutConstraintAxis)axis {
     if (_axis != axis) {
         _axis = axis;
         self.distributionArrangement.axis = axis;
@@ -139,7 +139,7 @@
     }
 }
 
-- (void)setDistribution:(UIStackViewDistribution)distribution {
+- (void)setDistribution:(FDStackViewDistribution)distribution {
     if (_distribution != distribution) {
         _distribution = distribution;
         self.distributionArrangement.distribution = distribution;
@@ -147,7 +147,7 @@
     }
 }
 
-- (void)setAlignment:(UIStackViewAlignment)alignment {
+- (void)setAlignment:(FDStackViewAlignment)alignment {
     if (_alignment != alignment) {
         _alignment = alignment;
         self.alignmentArrangement.alignment = alignment;

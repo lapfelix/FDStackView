@@ -23,7 +23,7 @@
 #import "FDStackViewLayoutArrangement.h"
 
 @interface FDStackViewAlignmentLayoutArrangement : FDStackViewLayoutArrangement
-@property (nonatomic, assign) UIStackViewAlignment alignment;
+@property (nonatomic, assign) FDStackViewAlignment alignment;
 @property (nonatomic, strong) NSMutableDictionary<NSString *, NSMapTable *> *alignmentConstraints;
 @property (nonatomic, strong) NSMapTable<UIView *, NSLayoutConstraint *> *hiddingDimensionConstraints;
 @end

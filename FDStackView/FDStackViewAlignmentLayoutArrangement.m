@@ -48,26 +48,26 @@
 }
 
 - (NSString *)alignmentConstraintsFirstKey {
-    if (self.axis == UILayoutConstraintAxisHorizontal) {
+    if (self.axis == FDLayoutConstraintAxisHorizontal) {
         switch (self.alignment) {
-            case UIStackViewAlignmentFill:
+            case FDStackViewAlignmentFill:
                 return @"Bottom";
-            case UIStackViewAlignmentTop:
-            case UIStackViewAlignmentCenter:
-            case UIStackViewAlignmentBottom:
-            case UIStackViewAlignmentFirstBaseline:
-            case UIStackViewAlignmentLastBaseline:
+            case FDStackViewAlignmentTop:
+            case FDStackViewAlignmentCenter:
+            case FDStackViewAlignmentBottom:
+            case FDStackViewAlignmentFirstBaseline:
+            case FDStackViewAlignmentLastBaseline:
                 return @"Ambiguity Suppression";
             default:
                 return @"Not Supported";
         }
     } else {
         switch (self.alignment) {
-            case UIStackViewAlignmentFill:
+            case FDStackViewAlignmentFill:
                 return @"Leading";
-            case UIStackViewAlignmentLeading:
-            case UIStackViewAlignmentCenter:
-            case UIStackViewAlignmentTrailing:
+            case FDStackViewAlignmentLeading:
+            case FDStackViewAlignmentCenter:
+            case FDStackViewAlignmentTrailing:
                 return @"Ambiguity Suppression";
             default:
                 return @"Not Supported";
@@ -76,28 +76,28 @@
 }
 
 - (NSString *)alignmentConstraintsSecondKey {
-    if (self.axis == UILayoutConstraintAxisHorizontal) {
+    if (self.axis == FDLayoutConstraintAxisHorizontal) {
         switch (self.alignment) {
-            case UIStackViewAlignmentBottom:
-            case UIStackViewAlignmentLastBaseline:
+            case FDStackViewAlignmentBottom:
+            case FDStackViewAlignmentLastBaseline:
                 return @"Bottom";
-            case UIStackViewAlignmentCenter:
+            case FDStackViewAlignmentCenter:
                 return @"CenterY";
-            case UIStackViewAlignmentTop:
-            case UIStackViewAlignmentFill:
-            case UIStackViewAlignmentFirstBaseline:
+            case FDStackViewAlignmentTop:
+            case FDStackViewAlignmentFill:
+            case FDStackViewAlignmentFirstBaseline:
                 return @"Top";
             default:
                 return @"Not Supported";
         }
     } else {
         switch (self.alignment) {
-            case UIStackViewAlignmentLeading:
+            case FDStackViewAlignmentLeading:
                 return @"Leading";
-            case UIStackViewAlignmentCenter:
+            case FDStackViewAlignmentCenter:
                 return @"CenterX";
-            case UIStackViewAlignmentTrailing:
-            case UIStackViewAlignmentFill:
+            case FDStackViewAlignmentTrailing:
+            case FDStackViewAlignmentFill:
                 return @"Trailing";
             default:
                 return @"Not Supported";
@@ -106,26 +106,26 @@
 }
 
 - (NSLayoutAttribute)alignmentConstraintsFirstAttribute {
-    if (self.axis == UILayoutConstraintAxisHorizontal) {
+    if (self.axis == FDLayoutConstraintAxisHorizontal) {
         switch (self.alignment) {
-            case UIStackViewAlignmentFill:
+            case FDStackViewAlignmentFill:
                 return NSLayoutAttributeBottom;
-            case UIStackViewAlignmentTop:
-            case UIStackViewAlignmentCenter:
-            case UIStackViewAlignmentBottom:
-            case UIStackViewAlignmentFirstBaseline:
-            case UIStackViewAlignmentLastBaseline:
+            case FDStackViewAlignmentTop:
+            case FDStackViewAlignmentCenter:
+            case FDStackViewAlignmentBottom:
+            case FDStackViewAlignmentFirstBaseline:
+            case FDStackViewAlignmentLastBaseline:
                 return self.dimensionAttributeForCurrentAxis;
             default:
                 return NSLayoutAttributeNotAnAttribute;
         }
     } else {
         switch (self.alignment) {
-            case UIStackViewAlignmentFill:
+            case FDStackViewAlignmentFill:
                 return NSLayoutAttributeLeading;
-            case UIStackViewAlignmentLeading:
-            case UIStackViewAlignmentCenter:
-            case UIStackViewAlignmentTrailing:
+            case FDStackViewAlignmentLeading:
+            case FDStackViewAlignmentCenter:
+            case FDStackViewAlignmentTrailing:
                 return self.dimensionAttributeForCurrentAxis;
             default:
                 return NSLayoutAttributeNotAnAttribute;
@@ -134,30 +134,30 @@
 }
 
 - (NSLayoutAttribute)alignmentConstraintsSecondAttribute {
-    if (self.axis == UILayoutConstraintAxisHorizontal) {
+    if (self.axis == FDLayoutConstraintAxisHorizontal) {
         switch (self.alignment) {
-            case UIStackViewAlignmentBottom:
+            case FDStackViewAlignmentBottom:
                 return NSLayoutAttributeBottom;
-            case UIStackViewAlignmentCenter:
+            case FDStackViewAlignmentCenter:
                 return NSLayoutAttributeCenterY;
-            case UIStackViewAlignmentTop:
-            case UIStackViewAlignmentFill:
+            case FDStackViewAlignmentTop:
+            case FDStackViewAlignmentFill:
                 return NSLayoutAttributeTop;
-            case UIStackViewAlignmentFirstBaseline:
+            case FDStackViewAlignmentFirstBaseline:
                 return NSLayoutAttributeFirstBaseline;
-            case UIStackViewAlignmentLastBaseline:
+            case FDStackViewAlignmentLastBaseline:
                 return NSLayoutAttributeLastBaseline;
             default:
                 return NSLayoutAttributeNotAnAttribute;
         }
     } else {
         switch (self.alignment) {
-            case UIStackViewAlignmentLeading:
+            case FDStackViewAlignmentLeading:
                 return NSLayoutAttributeLeading;
-            case UIStackViewAlignmentCenter:
+            case FDStackViewAlignmentCenter:
                 return NSLayoutAttributeCenterX;
-            case UIStackViewAlignmentTrailing:
-            case UIStackViewAlignmentFill:
+            case FDStackViewAlignmentTrailing:
+            case FDStackViewAlignmentFill:
                 return NSLayoutAttributeTrailing;
             default:
                 return NSLayoutAttributeNotAnAttribute;
@@ -174,7 +174,7 @@
     return _spanningLayoutGuide;
 }
 
-- (void)setAxis:(UILayoutConstraintAxis)axis {
+- (void)setAxis:(FDLayoutConstraintAxis)axis {
     if (self.axis != axis) {
         [super setAxis:axis];
         [self.spanningLayoutGuide removeFromSuperview];
@@ -183,7 +183,7 @@
     }
 }
 
-- (void)setAlignment:(UIStackViewAlignment)alignment {
+- (void)setAlignment:(FDStackViewAlignment)alignment {
     if (_alignment != alignment) {
         [self configureValidAlignment:&alignment forAxis:self.axis];
         _alignment = alignment;
@@ -203,30 +203,30 @@
 }
 
 - (NSLayoutAttribute)minAttributeForCanvasConnections {
-    return self.axis == UILayoutConstraintAxisHorizontal ? NSLayoutAttributeTop : NSLayoutAttributeLeading;
+    return self.axis == FDLayoutConstraintAxisHorizontal ? NSLayoutAttributeTop : NSLayoutAttributeLeading;
 }
 
 - (NSLayoutAttribute)centerAttributeForCanvasConnections {
-    return self.axis == UILayoutConstraintAxisHorizontal ? NSLayoutAttributeCenterY : NSLayoutAttributeCenterX;
+    return self.axis == FDLayoutConstraintAxisHorizontal ? NSLayoutAttributeCenterY : NSLayoutAttributeCenterX;
 }
 
 - (NSLayoutAttribute)maxAttributeForCanvasConnections {
-    return self.axis == UILayoutConstraintAxisHorizontal ? NSLayoutAttributeBottom : NSLayoutAttributeTrailing;
+    return self.axis == FDLayoutConstraintAxisHorizontal ? NSLayoutAttributeBottom : NSLayoutAttributeTrailing;
 }
 
 - (NSLayoutAttribute)dimensionAttributeForCurrentAxis {
-    return self.axis == UILayoutConstraintAxisHorizontal ? NSLayoutAttributeHeight : NSLayoutAttributeWidth;
+    return self.axis == FDLayoutConstraintAxisHorizontal ? NSLayoutAttributeHeight : NSLayoutAttributeWidth;
 }
 
 - (NSLayoutRelation)layoutRelationForCanvasConnectionForAttribute:(NSLayoutAttribute)attribute {
     switch (self.alignment) {
-        case UIStackViewAlignmentFirstBaseline: {
+        case FDStackViewAlignmentFirstBaseline: {
             if (attribute == self.minAttributeForCanvasConnections) {
                 return NSLayoutRelationGreaterThanOrEqual;
             }
             break;
         }
-        case UIStackViewAlignmentLastBaseline: {
+        case FDStackViewAlignmentLastBaseline: {
             if (attribute == self.maxAttributeForCanvasConnections) {
                 return NSLayoutRelationLessThanOrEqual;
             }
@@ -240,9 +240,9 @@
 
 - (NSLayoutRelation)layoutRelationForItemConnectionForAttribute:(NSLayoutAttribute)attribute {
     switch (self.alignment) {
-        case UIStackViewAlignmentCenter:
-        case UIStackViewAlignmentFirstBaseline:
-        case UIStackViewAlignmentLastBaseline: {
+        case FDStackViewAlignmentCenter:
+        case FDStackViewAlignmentFirstBaseline:
+        case FDStackViewAlignmentLastBaseline: {
             if (attribute == self.minAttributeForCanvasConnections) {
                 return NSLayoutRelationLessThanOrEqual;
             } else if (attribute == self.maxAttributeForCanvasConnections) {
@@ -250,13 +250,13 @@
             }
             break;
         }
-        case UIStackViewAlignmentTop: {
+        case FDStackViewAlignmentTop: {
             if (attribute == self.maxAttributeForCanvasConnections) {
                 return NSLayoutRelationGreaterThanOrEqual;
             }
             break;
         }
-        case UIStackViewAlignmentBottom: {
+        case FDStackViewAlignmentBottom: {
             if (attribute == self.minAttributeForCanvasConnections) {
                 return NSLayoutRelationLessThanOrEqual;
             }
@@ -283,7 +283,7 @@
     [self.canvasConnectionConstraints removeAllObjects];
     
     NSArray<NSNumber *> *canvasAttributes = @[@(self.minAttributeForCanvasConnections), @(self.maxAttributeForCanvasConnections)];
-    if (self.alignment == UIStackViewAlignmentCenter) {
+    if (self.alignment == FDStackViewAlignmentCenter) {
         canvasAttributes = [canvasAttributes arrayByAddingObject:@(self.centerAttributeForCanvasConnections)];
     } else if (self.isBaselineAlignment) {
         NSLayoutConstraint *canvasFitConstraint = [NSLayoutConstraint constraintWithItem:self.canvas attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:0];
@@ -304,23 +304,23 @@
 
 - (UIView *)viewOrGuideForLocationAttribute:(NSLayoutAttribute)attribute {
     switch (self.alignment) {
-        case UIStackViewAlignmentFill:
+        case FDStackViewAlignmentFill:
             return self.mutableItems.firstObject;
-        case UIStackViewAlignmentTop:
-        case UIStackViewAlignmentFirstBaseline: {
+        case FDStackViewAlignmentTop:
+        case FDStackViewAlignmentFirstBaseline: {
             if (attribute == self.minAttributeForCanvasConnections) {
                 return self.mutableItems.firstObject;
             }
             break;
         }
-        case UIStackViewAlignmentCenter: {
+        case FDStackViewAlignmentCenter: {
             if (attribute == self.centerAttributeForCanvasConnections) {
                 return self.mutableItems.firstObject;
             }
             break;
         }
-        case UIStackViewAlignmentBottom:
-        case UIStackViewAlignmentLastBaseline: {
+        case FDStackViewAlignmentBottom:
+        case FDStackViewAlignmentLastBaseline: {
             if (attribute == self.maxAttributeForCanvasConnections) {
                 return self.mutableItems.firstObject;
             }
@@ -339,11 +339,11 @@
     _spanningLayoutGuide = [FDLayoutSpacer new];
     _spanningLayoutGuide.translatesAutoresizingMaskIntoConstraints = NO;
     [self.canvas addSubview:_spanningLayoutGuide];
-    _spanningLayoutGuide.horizontal = self.axis == UILayoutConstraintAxisHorizontal;
+    _spanningLayoutGuide.horizontal = self.axis == FDLayoutConstraintAxisHorizontal;
 }
 
 - (BOOL)spanningGuideConstraintsNeedUpdate {
-    if (self.alignment != UIStackViewAlignmentFill && _spanningGuideConstraintsNeedUpdate) {
+    if (self.alignment != FDStackViewAlignmentFill && _spanningGuideConstraintsNeedUpdate) {
         _spanningGuideConstraintsNeedUpdate = NO;
         return YES;
     }
@@ -351,13 +351,13 @@
 }
 
 - (BOOL)isBaselineAlignment {
-    return self.axis == UILayoutConstraintAxisHorizontal && (self.alignment == UIStackViewAlignmentFirstBaseline || self.alignment == UIStackViewAlignmentLastBaseline);
+    return self.axis == FDLayoutConstraintAxisHorizontal && (self.alignment == FDStackViewAlignmentFirstBaseline || self.alignment == FDStackViewAlignmentLastBaseline);
 }
 
-- (void)configureValidAlignment:(UIStackViewAlignment *)alignment forAxis:(UILayoutConstraintAxis)axis {
-    if (axis == UILayoutConstraintAxisVertical && (*alignment == UIStackViewAlignmentFirstBaseline || *alignment == UIStackViewAlignmentLastBaseline)) {
+- (void)configureValidAlignment:(FDStackViewAlignment *)alignment forAxis:(FDLayoutConstraintAxis)axis {
+    if (axis == FDLayoutConstraintAxisVertical && (*alignment == FDStackViewAlignmentFirstBaseline || *alignment == FDStackViewAlignmentLastBaseline)) {
         NSLog(@"Invalid for vertical axis. Use Leading or Trailing instead.");
-        *alignment = *alignment == UIStackViewAlignmentFirstBaseline ? UIStackViewAlignmentLeading : UIStackViewAlignmentTrailing;
+        *alignment = *alignment == FDStackViewAlignmentFirstBaseline ? FDStackViewAlignmentLeading : FDStackViewAlignmentTrailing;
     }
 }
 
@@ -407,7 +407,7 @@
     
     UIView *guardView = self.mutableItems.firstObject;
     [self.mutableItems enumerateObjectsUsingBlock:^(UIView *item, NSUInteger idx, BOOL *stop) {
-        if (self.alignment != UIStackViewAlignmentFill) {
+        if (self.alignment != FDStackViewAlignmentFill) {
             NSLayoutConstraint *ambiguitySuppressionConstraint = [NSLayoutConstraint constraintWithItem:item attribute:self.alignmentConstraintsFirstAttribute relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:0];
             ambiguitySuppressionConstraint.identifier = @"FDSV-ambiguity-suppression";
             ambiguitySuppressionConstraint.priority = 25;
@@ -428,8 +428,8 @@
             [self.alignmentConstraints[self.alignmentConstraintsSecondKey] setObject:secondConstraint forKey:item];
         }
         if (item.hidden) {
-            NSLayoutConstraint *hiddenConstraint = [NSLayoutConstraint constraintWithItem:item attribute:self.axis == UILayoutConstraintAxisHorizontal ? NSLayoutAttributeHeight : NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:0];
-            hiddenConstraint.priority = [item contentCompressionResistancePriorityForAxis:self.axis == UILayoutConstraintAxisHorizontal ? UILayoutConstraintAxisVertical : UILayoutConstraintAxisHorizontal];
+            NSLayoutConstraint *hiddenConstraint = [NSLayoutConstraint constraintWithItem:item attribute:self.axis == FDLayoutConstraintAxisHorizontal ? NSLayoutAttributeHeight : NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:0];
+            hiddenConstraint.priority = [item contentCompressionResistancePriorityForAxis:self.axis == FDLayoutConstraintAxisHorizontal ? FDLayoutConstraintAxisVertical : FDLayoutConstraintAxisHorizontal];
             hiddenConstraint.identifier = @"FDSV-hiding";
             [self.canvas addConstraint:hiddenConstraint];
             [self.hiddingDimensionConstraints setObject:hiddenConstraint forKey:item];

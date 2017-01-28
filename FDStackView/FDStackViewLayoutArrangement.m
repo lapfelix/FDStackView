@@ -26,7 +26,7 @@
 
 @implementation FDStackViewLayoutArrangement
 
-- (instancetype)initWithItems:(NSArray *)items onAxis:(UILayoutConstraintAxis)axis {
+- (instancetype)initWithItems:(NSArray *)items onAxis:(FDLayoutConstraintAxis)axis {
     if (self = [super init]) {
         _mutableItems = [[NSMutableArray alloc] initWithArray:items];
         _canvasConnectionConstraints = [NSMutableArray array];

@@ -39,11 +39,11 @@
 @interface FDStackViewLayoutArrangement : NSObject <FDStackViewLayoutArrangementSubclassHook>
 
 @property (nonatomic, weak) UIView *canvas;
-@property (nonatomic, assign) UILayoutConstraintAxis axis;
+@property (nonatomic, assign) FDLayoutConstraintAxis axis;
 @property (nonatomic, strong) NSMutableArray<UIView *> *mutableItems;
 @property (nonatomic, strong) NSMutableArray<NSLayoutConstraint *> *canvasConnectionConstraints;
 
-- (instancetype)initWithItems:(NSArray<UIView *> *)items onAxis:(UILayoutConstraintAxis)axis;
+- (instancetype)initWithItems:(NSArray<UIView *> *)items onAxis:(FDLayoutConstraintAxis)axis;
 - (void)insertItem:(UIView *)item atIndex:(NSUInteger)index;
 - (void)removeItem:(UIView *)item;
 - (void)addItem:(UIView *)item;
